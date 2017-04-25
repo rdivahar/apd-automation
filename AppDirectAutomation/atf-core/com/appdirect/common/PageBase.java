@@ -94,6 +94,4 @@ public class PageBase {
 	public String getPageURL(){
 		return driver.getCurrentUrl();
 	}
-	
-	
 }

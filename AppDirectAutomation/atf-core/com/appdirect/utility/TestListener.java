@@ -2,12 +2,14 @@ package com.appdirect.utility;
 
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
+import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
-public class TestListener implements IInvokedMethodListener {
+public class TestListener implements IInvokedMethodListener, IRetryAnalyzer  {
 
 	public static String testDescription;
-
+	int minRetry = 0;
+	int maxRetry = 1;
 
 	@Override
 	public void afterInvocation(IInvokedMethod arg0, ITestResult arg1) {
@@ -23,5 +25,16 @@ public class TestListener implements IInvokedMethodListener {
 	    TestListener.testDescription = t.description();
 	    System.out.println(TestListener.testDescription);
 
+	}
+
+	@Override
+	public boolean retry(ITestResult result) {
+		if (minRetry<=maxRetry){
+			minRetry++;
+			System.out.println("Working Raju Bhai");
+			return true;
+		}else{
+			return false;			
+		}
 	}
 }

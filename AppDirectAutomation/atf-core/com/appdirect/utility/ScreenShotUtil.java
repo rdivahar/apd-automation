@@ -9,17 +9,27 @@ import org.testng.Assert;
 
 public final class ScreenShotUtil extends Assert{
 
-	public static String imageFilePath = System.getProperty("user.dir")+"/test-output/Reports/";
+	public static String imageFilePath = System.getProperty("user.dir")+"/test-reports/snapshots/";
 	
 	private ScreenShotUtil() {
 	}
 	
 	public static void takeScreenShot(WebDriver driver, String imageName) throws Exception{
+		
 		String imagePath = imageFilePath+imageName+".png";
-		TakesScreenshot captureScreen = ((TakesScreenshot)driver);
-		File imageSource = captureScreen.getScreenshotAs(OutputType.FILE);
-		File imageDestination = new File(imagePath);
-		FileUtils.copyFile(imageSource, imageDestination);
+		
+		try {
+			File file = new File(imageFilePath);
+			if (!file.exists()){
+				file.mkdirs();
+			}
+			TakesScreenshot captureScreen = ((TakesScreenshot)driver);
+			File imageSource = captureScreen.getScreenshotAs(OutputType.FILE);
+			File imageDestination = new File(imagePath);
+			FileUtils.copyFile(imageSource, imageDestination);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 		
      public static String getScreenShotPath(WebDriver driver, String imageName) throws Exception

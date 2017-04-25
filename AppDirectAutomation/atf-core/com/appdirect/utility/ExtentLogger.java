@@ -7,12 +7,11 @@ import java.util.logging.SimpleFormatter;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.Optional;
+import com.aventstack.extentreports.AnalysisStrategy;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
-
 
 public final class ExtentLogger {
 	
@@ -41,12 +40,20 @@ public final class ExtentLogger {
 
 	public static void startReport(String suiteName)
      {
-         htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+"/test-output/"+suiteName+".html");
-         extReports = new ExtentReports();
-         extReports.attachReporter(htmlReporter);
-         htmlReporter.config().setReportName("AppDirect Automation Report");
+         htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+"/test-reports/"+suiteName.toLowerCase()+".html");
+         htmlReporter.config().setReportName("Test Report - AppDirectSignUp 1.0");
          htmlReporter.config().setDocumentTitle("AppDirect Automation Report"); 
-         htmlReporter.config().setTheme(Theme.STANDARD);
+         htmlReporter.config().setEncoding("UTF-8");
+         extReports = new ExtentReports();
+         extReports.setSystemInfo("Environment", "Pre-Production");
+         extReports.setSystemInfo("Build", "AppDirect Release");
+         extReports.setSystemInfo("Version", "1.0.0");
+         extReports.setSystemInfo("TestSuite", "Basic Acceptance");
+         extReports.setSystemInfo("Browser", "Chrome");
+         extReports.setSystemInfo("Owner", "Test Automation Team");
+         extReports.setSystemInfo("HostName", "TestVM-PC");
+         extReports.setAnalysisStrategy(AnalysisStrategy.TEST);
+         extReports.attachReporter(htmlReporter);
      }	
 	 
 	public static void startTest(String testCaseName, @Optional String testDescription){	
@@ -54,9 +61,9 @@ public final class ExtentLogger {
 		 System.out.println("<INFO> : Test Exceution Started & InProgress");
 	 }
 	
- 
-	public static void getResults(ITestResult result) throws Exception{
+	public static void getResults(ITestResult result, WebDriver driver) throws Exception{
 		
+		String screenCaptureName = result.getMethod().getMethodName().substring(4).toLowerCase()+"-"+DataGenerator.generateNumber(1);
 		String testDescription = result.getMethod().getDescription();
 		String testDefnition = testDescription.substring(testDescription.lastIndexOf("-")+1).substring(5);
 		 
@@ -64,11 +71,10 @@ public final class ExtentLogger {
 			 extTest.log(Status.PASS, "Test Validated - "+testDefnition);
 		 }
 		 else if (result.getStatus()==ITestResult.FAILURE) {
-			 String ScreenShotPath = ScreenShotUtil.getScreenShotPath(driver,result.getMethod().toString());
-			 System.out.println("ScreenShot Path: "+ScreenShotPath);
-			 //extTest.addScreenCaptureFromPath(ScreenShotPath);
-			 extTest.log(Status.FAIL, "Application Failure On - "+ testDefnition);
-			 
+			 String ScreenShotPath = ScreenShotUtil.getScreenShotPath(driver,screenCaptureName);
+			 extTest.addScreenCaptureFromPath(ScreenShotPath);
+			 extTest.log(Status.ERROR, result.getThrowable().getLocalizedMessage());
+			 extTest.log(Status.FAIL, "Failed Test - "+ testDefnition+" <p> Refer the SNAPSHOT Below: </p>");	 
 		}else {
 			extTest.log(Status.SKIP, "Skipped the Test - " + testDefnition);
 		} 

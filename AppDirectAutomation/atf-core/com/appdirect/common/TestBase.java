@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -22,6 +24,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.appdirect.pagefactory.HomePage;
 import com.appdirect.utility.ExtentLogger;
+
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -62,14 +65,16 @@ public class TestBase {
 	@AfterMethod
 	public void closeAppDirectAndLogResults(ITestResult result) throws Exception{
 		System.out.println(result.getMethod().getDescription());
+		ExtentLogger.getResults(result, driver);
 		closeBrowser();
-		ExtentLogger.getResults(result);
 	}
 	
 	@AfterSuite
-	public void flushResults(){
+	public void flushResults() throws AddressException, MessagingException{
 		ExtentLogger.flushReport();
 		System.out.println("After @AfterSuite");
+		//GoogleMail mailSender = new GoogleMail();
+		//mailSender.sendEmail("sahayadivahar", "latitude5510dell", "maildivahar@gmail.com", "FirstEmail", "TestReport");
 	}
 	
 	public void loadTestSettings(){
