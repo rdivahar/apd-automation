@@ -12,7 +12,6 @@ import com.appdirect.utility.ExtentLogger;
 
 public class LoginTests extends TestBase {
 	
-	HomePage homePage;
 	LoginPage loginPage;
 	SignupPage signupPage;
 		

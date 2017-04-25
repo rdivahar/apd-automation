@@ -14,8 +14,9 @@ import com.appdirect.pagefactory.LoginPage;
 import com.appdirect.pagefactory.SignupPage;
 import com.appdirect.utility.ExtentLogger;
 import com.appdirect.utility.TestDataProvider;
+import com.appdirect.utility.TestListener;
 
-
+@Test(retryAnalyzer=TestListener.class)
 public class SignUpTests extends TestBase {
 	
 	public LoginPage loginPage;
@@ -133,12 +134,6 @@ public class SignUpTests extends TestBase {
 		ExtentLogger.logPass("Verified: the Application behaviour after a successful User SignUp Registration");
 	}
 	
-	@Test(description="TC000078 - The Test Case To Extract the Description")
-	@Parameters({"loginEmail"})
-	public void testDescriptionExtraction(String emailAddress) throws Exception{
-		ExtentLogger.logPass("Verified: the Application behaviour after a successful User SignUp Registration");
-	}
-	
 	@Test(dataProvider = "ValidSignUpCreds", description="TC010 - Test AppDirect Logo Behavior at SignUp Page", dataProviderClass = TestDataProvider.class)
 	public void testSignUpAccessHomeWithLogo(String emailAddress) throws Exception{
 		loginPage.clickSignUp();
@@ -158,7 +153,6 @@ public class SignUpTests extends TestBase {
 		signupPage = new SignupPage(driver);
 		assertEquals(signupPage.getDefaultEmailFieldText(), MessageConstants.DEFAULT_EMAIL);
 		assertTrue(signupPage.isSignUpEmailFieldHasFocus());
-		//assertTrue(false);
 		assertTrue(signupPage.isSignUpEmailFieldDisplays(emailAddress));
 		ExtentLogger.logPass("Verified: the AppDirect Logo behaviour at SignUp Page");
 	}
@@ -168,6 +162,13 @@ public class SignUpTests extends TestBase {
 		loginPage.clickSignUp();
 		signupPage = new SignupPage(driver);
 		ExtentLogger.logPass("Verified: the Localization Behaviour Of Application at SignUp Page");
+	}
+	
+	@Test(description="TC000FF - Test to intentionally simulate Failure case to Check Error Capturing")
+	public void testSimulateFailure() throws Exception{
+		assertTrue(false,"Failed to Simulate the Failure -");
+		ExtentLogger.logWarning("Run Into an Assertion Error - Possible Product Defect");
+		ExtentLogger.logFail("INFO: Test The ScreenCapture Capability");
 	}
 	
 }
