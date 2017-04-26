@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="BasicAcceptanceSuite" parallel="tests" thread-count="2">
+   <parameter name="browser" value="Chrome"/>
+   <test name="SignUpTestsChrome" preserve-order="true">
+      <parameter name="validEmail" value="gurubhai@test.com"/> 
+      <parameter name="invalidEmailAddress" value="DONKEY"/> 
+      <parameter name="alreadyRegisteredEmail" value="sdivahar@appdirect.com"/>
+      <parameter name="blankEmailAddress" value=""/>
+      <parameter name="nonActivatedUserEmail" value="dayamina@apppdirect.com"/>
+      <parameter name="loginEmail" value="dayamindiva@apppdirect.com"/>
+      <parameter name="loginPassword" value="12345"/>
+      <classes>
+         <class name="com.appdirect.tests.SignUpTests" />
+      </classes>
+   </test>
+   <test name="SignUpTestsFirefox" preserve-order="true">
+      <parameter name="validEmail" value="gurubhai@test.com"/> 
+      <parameter name="invalidEmailAddress" value="DONKEY"/> 
+      <parameter name="alreadyRegisteredEmail" value="sdivahar@appdirect.com"/>
+      <parameter name="blankEmailAddress" value=""/>
+      <parameter name="nonActivatedUserEmail" value="dayamina@apppdirect.com"/>
+      <parameter name="loginEmail" value="dayamindiva@apppdirect.com"/>
+      <parameter name="loginPassword" value="12345"/>
+      <classes>
+         <class name="com.appdirect.tests.LoginTests" />
+      </classes>
+   </test>
+</suite>

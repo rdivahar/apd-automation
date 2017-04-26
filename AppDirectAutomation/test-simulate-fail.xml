@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
 <suite name="BasicAcceptanceSuite" parallel="false">
    <parameter name="browser" value="Chrome"/>
-   <test name="SignUpTestsChrome" preserve-order="true">
-      <parameter name="blankEmailAddress" value=""/>
-      <parameter name="loginEmail" value="dayamindiva@apppdirect.com"/>
+   <test name="SignUpFailureSimulation">
       <classes>
-         <class name="com.appdirect.tests.SignUpTests" >
+         <class name="com.appdirect.tests.SignUpTests">
          <methods>
-     		<exclude name="testSimulateFailure" />
+     		<include name="testSimulateFailure" />
    		</methods>
    		</class>
       </classes>
