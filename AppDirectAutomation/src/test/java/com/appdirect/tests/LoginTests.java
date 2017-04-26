@@ -28,7 +28,7 @@ public class LoginTests extends TestBase {
 		ExtentLogger.logPass("Pass - AccessPoint II");
 	}
 	
-	@Test(description="TC002 - Test whether a User Can SignUp with Valid Credentials")
+	@Test(description="BATS002 - Test whether a User Can SignUp with Valid Credentials")
 	@Parameters({"validEmail"})
 	public void testValidUserCanSignUp(String emailAddress) throws Exception{
 		homePage = new HomePage(getDriver());
@@ -37,7 +37,7 @@ public class LoginTests extends TestBase {
 		loginPage.clickSignUp();
 		signupPage = new SignupPage(getDriver());
 		assertTrue(signupPage.doSignUp(emailAddress));
-		ExtentLogger.logPass("Machan Passed !!");
+		ExtentLogger.logPass("Test Passed");
 	}
 }
 
