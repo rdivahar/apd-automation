@@ -162,6 +162,7 @@ public class SignUpTests extends TestBase {
 	public void testSignUpLocalization() throws Exception{
 		loginPage.clickSignUp();
 		signupPage = new SignupPage(driver);
+		//TODO: Localization Validation
 		ExtentLogger.logPass("Verified: the Localization Behaviour Of Application at SignUp Page");
 	}
 	
