@@ -8,12 +8,12 @@ public class TestDataProvider extends DataGenerator{
 	
 	 @DataProvider(name = "ValidSignUpCreds")
 	 public static Object[][] validSignUpEmail() {
-	 return new Object[][] {{generateEmail()}, {generateEmail()}};
+	 return new Object[][] {{generateEmail()}};
 	 }
 	 
 	 @DataProvider(name = "ValidInternalSignUpCreds")
 	 public static Object[][] validInternalSignUpEmail() {
-	 return new Object[][] {{generateInternalDomainEmail()}, {generateInternalDomainEmail()}};
+	 return new Object[][] {{generateInternalDomainEmail()}};
 	 }
 	 
 	 @DataProvider(name = "AlreadyRegisteredEmail")
@@ -36,4 +36,3 @@ public class TestDataProvider extends DataGenerator{
 	 return new Object[][] {{generateEmail(), generateString(6)}, {generateEmail(), generateString(7)}};
 	 }
 }
-
