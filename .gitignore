@@ -2,3 +2,6 @@ AppDirectAutomation/target/classes/
 AppDirectAutomation/test-output/
 AppDirectAutomation/test-reports/snapshots/
 AppDirectAutomation/target/surefire-reports/
+AppDirectAutomation/target/maven-status/
+AppDirectAutomation/target/
+AppDirectAutomation/apd-selenium-qa.log
