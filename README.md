@@ -27,13 +27,13 @@ TestNG.XML: TestNG Configuration for different test suites.
 Resources: Has the Test Resources or the TestData.CSV files. 
 
 TOOLS USED: 
-Java (Version JDK 1.8.x)
-Selenium 3.x
-TestNG 
-Maven 
-Log 4J
-Extent Reports
-Eclipse IDE
-Jenkins CI
-Google Cloud Platform
+1. Java (Version JDK 1.8.x)
+2. Selenium 3.x
+3. TestNG 
+4. Maven 
+5. Log 4J
+6. Extent Reports
+7. Eclipse IDE
+8. Jenkins CI
+9. Google Cloud Platform
 
