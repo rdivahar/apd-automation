@@ -33,6 +33,9 @@ public class LoginPage extends PageBase {
 	@FindBy(css=".adb-footnote>p>a")
 	private WebElement signUpLink;
 	
+	@FindBy(css=".adb-container_header--title.adb-container_header--item")
+	public WebElement loginHeader;
+	
 	public void login(String emailAddress, String userPassword ){
 		try {
 			ExtentLogger.logInfo("Logging In With Username : "+emailAddress+" and Password : "+userPassword);

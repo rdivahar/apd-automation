@@ -26,7 +26,7 @@ public class SignUpTests extends TestBase {
 	@BeforeMethod
 	public void signUpSetUp() throws Exception {
 		homePage = new HomePage(getDriver());
-		homePage.clickLogin();
+		homePage.loginAndSwitchToMarketPlace();
 		loginPage = new LoginPage(getDriver());
 	}
 	
