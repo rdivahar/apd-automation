@@ -5,6 +5,7 @@
    <test name="SignUpTestsChrome" preserve-order="true">
       <parameter name="blankEmailAddress" value=""/>
       <parameter name="loginEmail" value="dayamindiva@apppdirect.com"/>
+      <parameter name="validEmail" value="dayamindiva@apppdirect.com"/>
       <classes>
          <class name="com.appdirect.tests.SignUpTests" >
          <methods>
